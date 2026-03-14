@@ -909,6 +909,19 @@
       .hero-meta { flex-wrap: wrap; width: 100%; }
       .hero-meta-item { flex: 1; min-width: 160px; }
     }
+
+    /* ── PRINT ── */
+    @media print {
+      @page { margin: 0; }
+      body { 
+        -webkit-print-color-adjust: exact; 
+        print-color-adjust: exact; 
+        background-color: var(--bg) !important;
+      }
+      nav, #pwd-overlay, .scroll-hint { display: none !important; }
+      #bg-canvas { opacity: 0.2 !important; }
+      .fade-up { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -963,7 +976,10 @@
     <li><a href="#deliverables">Deliverables</a></li>
     <li><a href="#compliance">Compliance</a></li>
   </ul>
-  <a href="mailto:info@thedatum.ai" class="nav-cta">Contact Us</a>
+  <div style="display:flex; gap:16px; align-items:center;">
+    <button onclick="window.print()" class="nav-cta" style="background:var(--border); color:var(--white); border:none; cursor:pointer;">Save as PDF</button>
+    <a href="mailto:info@thedatum.ai" class="nav-cta">Contact Us</a>
+  </div>
 </nav>
 
 <!-- HERO -->
