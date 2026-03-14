@@ -912,15 +912,53 @@
 
     /* ── PRINT ── */
     @media print {
-      @page { margin: 0; }
+      @page { 
+        size: A4 portrait;
+        margin: 1cm;
+      }
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
       body { 
-        -webkit-print-color-adjust: exact; 
-        print-color-adjust: exact; 
-        background-color: var(--bg) !important;
+        background-color: #101619 !important;
+        background: #101619 !important;
+        color: #e5e5e5 !important;
+        margin: 0;
+      }
+      section, #hero {
+        background-color: transparent !important;
+      }
+      #products, #methodology, #deliverables, #compliance, #bg2-sections {
+        background-color: #142229 !important;
+        background: #142229 !important;
       }
       nav, #pwd-overlay, .scroll-hint { display: none !important; }
-      #bg-canvas { opacity: 0.2 !important; }
+      #bg-canvas { opacity: 0.2 !important; position: absolute !important; }
       .fade-up { opacity: 1 !important; transform: none !important; transition: none !important; }
+      
+      /* Avoid breaking inside cards and important blocks */
+      .card, .stat-card, .product-card, .scope-item, .ref-card, .phase, .comp-table tr, .hw-card, .timeline-bar {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      
+      /* Ensure sections start on a clean page if they don't fit */
+      h2 {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+      
+      /* Let sections flow nicely but add page breaks if needed for major sections */
+      section {
+        page-break-inside: auto;
+        break-inside: auto;
+      }
+      #hero {
+        page-break-after: always;
+        break-after: page;
+      }
     }
   </style>
 </head>
